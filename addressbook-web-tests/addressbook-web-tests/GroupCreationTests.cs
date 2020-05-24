@@ -53,7 +53,6 @@ namespace WebAddressbookTests
             group.Header = "bbb";
             group.Footer = "ccc";
             FillGroupForm(group);
-
             SubmitGroupCreatin();
             Logout();
         }
