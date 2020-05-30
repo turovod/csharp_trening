@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebAddressbookTests;
-
-namespace addressbook_web_tests.ContactsData
+﻿
+namespace WebAddressbookTests
 {
-    class ContactsData : AccountData
+    public class ContactsData : AccountData
     {
         string firstName;
         string middleName;
