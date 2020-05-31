@@ -34,11 +34,11 @@ namespace WebAddressbookTests
             contactsData.SHome = "a";
             contactsData.SNotes = "a";
 
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(contactsData);
-            app.Groups.InitNewContactCreation();
-            app.Groups.FillContactForm(contactsData);
-            app.Groups.SubmitContactCreatin();
+            
+            app.Groups
+                .InitNewContactCreation()
+                .FillContactForm(contactsData)
+                .SubmitContactCreatin();
             app.Navigator.GoToHomePage();
             app.AuthOut.Logout();
         }

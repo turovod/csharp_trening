@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,9 @@ namespace WebAddressbookTests
 
         public ApplicationManager()
         {
+            driver = new FirefoxDriver();
+            baseURL = "http://localhost/addressbook/";
+
             loginHelper = new LoginHelper(driver);
             logoutHelper = new LogoutHelper(driver);
             navigationHelper = new NavigationHelper(driver, baseURL);

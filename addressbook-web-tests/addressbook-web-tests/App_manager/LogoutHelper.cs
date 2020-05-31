@@ -10,8 +10,6 @@ namespace WebAddressbookTests
 {
     public class LogoutHelper : HelperBase
     {
-        private IWebDriver driver;
-
         public LogoutHelper(IWebDriver driver) : base(driver) { }
 
         public void Logout()

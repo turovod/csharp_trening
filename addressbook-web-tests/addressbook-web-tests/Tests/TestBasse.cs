@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace WebAddressbookTests
 {
@@ -11,11 +11,13 @@ namespace WebAddressbookTests
         [SetUp]
         public void SetupTest()
         {
-            //driver = new FirefoxDriver();
-            //baseURL = "http://localhost/addressbook/";
-            //verificationErrors = new StringBuilder();
+            ContactsData contactsData = new ContactsData("a", "admin", "secret");
 
-            app = new ApplicationManager(); 
+            app = new ApplicationManager();
+            app.Navigator.GoToHomePage();
+            app.Auth.Login(contactsData);
+
+           
         }
 
         [TearDown]
