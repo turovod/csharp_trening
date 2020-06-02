@@ -13,12 +13,19 @@ namespace WebAddressbookTests
             group.Header = "bbb";
             group.Footer = "ccc";
 
-            app.Navigator.GoToGroupsPage();
-            app.Groups
-                .InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreatin();
+            app.Groups.Create(group);
             app.AuthOut.Logout();
-        }      
+        }
+
+        [Test]
+        public void EmptyGroupCreationTest()
+        {
+            GroupData group = new GroupData("");
+            group.Header = "";
+            group.Footer = "";
+
+            app.Groups.Create(group);
+            app.AuthOut.Logout();
+        }
     }
 }

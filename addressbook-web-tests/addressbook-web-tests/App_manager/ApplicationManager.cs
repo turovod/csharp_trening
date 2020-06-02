@@ -23,10 +23,15 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook/";
 
-            loginHelper = new LoginHelper(driver);
-            logoutHelper = new LogoutHelper(driver);
-            navigationHelper = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
+            loginHelper = new LoginHelper(this);
+            logoutHelper = new LogoutHelper(this);
+            navigationHelper = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+        }
+
+        public IWebDriver Driver 
+        {
+            get { return driver; }
         }
 
         public void Stop()
@@ -60,5 +65,7 @@ namespace WebAddressbookTests
         {
             get { return  groupHelper; }
         }
+
+        
     }
 }
