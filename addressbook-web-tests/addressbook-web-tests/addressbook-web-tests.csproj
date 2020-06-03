@@ -73,6 +73,7 @@
     <Compile Include="App_manager\LoginHelper.cs" />
     <Compile Include="App_manager\LogoutHelper.cs" />
     <Compile Include="App_manager\NavigationHelper.cs" />
+    <Compile Include="Tests\Contacts\ContactModificationTests.cs" />
     <Compile Include="Tests\Contacts\ContactRemovalTests.cs" />
     <Compile Include="Tests\TestBasse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
