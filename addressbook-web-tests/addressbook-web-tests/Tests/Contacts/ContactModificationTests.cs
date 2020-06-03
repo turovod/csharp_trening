@@ -36,7 +36,7 @@ namespace WebAddressbookTests
             contactsData.SHome = "z";
             contactsData.SNotes = "z";
 
-            app.Contacts.Modify("17", contactsData);
+            app.Contacts.Modify(contactsData);
         }
     }
 }

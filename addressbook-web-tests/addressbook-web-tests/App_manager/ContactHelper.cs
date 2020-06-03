@@ -12,9 +12,9 @@ namespace WebAddressbookTests
 
         public ContactHelper(ApplicationManager manager) : base(manager) { }
 
-        public ContactHelper Remove(string index)
+        public ContactHelper Remove()
         {
-            SelectContact(index);
+            SelectContact();
             RemoveContact();
 
             return this;
@@ -28,9 +28,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        internal ContactHelper Modify(string index, ContactsData contactsData)
+        internal ContactHelper Modify(ContactsData contactsData)
         {
-            SelectContact(index);
+            SelectContact();
             InitContactModification();
             FillContactForm(contactsData);
             SubmitContactModification();
@@ -129,9 +129,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SelectContact(string index)
+        public ContactHelper SelectContact()
         {
-            driver.FindElement(By.Id(index)).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
 
             return this;
         }

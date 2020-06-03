@@ -11,7 +11,7 @@ namespace WebAddressbookTests
         public void ContactRemovalTest()
         {
             // Проверить наличие контакта с этим id
-            app.Contacts.Remove("14");
+            app.Contacts.Remove();
         }
     }
 }
