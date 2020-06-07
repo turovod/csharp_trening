@@ -11,13 +11,9 @@ namespace WebAddressbookTests
         [SetUp]
         public void SetupTest()
         {
-            ContactsData contactsData = new ContactsData("a", "admin", "secret");
-
-            app = new ApplicationManager();
+            app = TestSuiteFixture.app;
             app.Navigator.GoToHomePage();
-            app.Auth.Login(contactsData);
-
-           
+            app.Auth.Login(new ContactsData("a", "admin", "secret"));
         }
 
         [TearDown]
