@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : TestBasse
+    public class ContactModificationTests : AuthTestBase
     {
         [Test]
         public void ContactModificationTest()

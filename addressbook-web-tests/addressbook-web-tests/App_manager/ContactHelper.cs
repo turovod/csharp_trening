@@ -31,7 +31,7 @@ namespace WebAddressbookTests
             InitContactModification();
             FillContactForm(contactsData);
             SubmitContactModification();
-            driver.FindElement(By.LinkText("home page")).Click();
+            manager.Navigator.GoToHomePage();
             return this;
         }
 

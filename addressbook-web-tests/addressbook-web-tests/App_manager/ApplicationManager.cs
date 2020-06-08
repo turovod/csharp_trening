@@ -15,7 +15,6 @@ namespace WebAddressbookTests
         protected string baseURL;
 
         protected LoginHelper loginHelper;
-        protected LogoutHelper logoutHelper;
         protected NavigationHelper navigationHelper;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
@@ -25,19 +24,28 @@ namespace WebAddressbookTests
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/";
+            baseURL = "http://localhost/addressbook";
 
             loginHelper = new LoginHelper(this);
-            logoutHelper = new LogoutHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
-            logoutHelper = new LogoutHelper(this);
+        }
+
+        public static ApplicationManager GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GoToHomePage();
+                app.Value = newInstance;
+            }
+            return app.Value;
         }
 
         ~ApplicationManager()
         {
-            logoutHelper.Logout();
+            loginHelper.Logout();
             try
             {
                 driver.Quit();
@@ -46,15 +54,6 @@ namespace WebAddressbookTests
             {
                 // Ignore errors if unable to close the browser
             }
-        }
-
-        public static ApplicationManager GetInstance()
-        {
-            if (!app.IsValueCreated)
-            {
-                app.Value = new ApplicationManager();
-            }
-            return app.Value;
         }
 
         public IWebDriver Driver 
@@ -70,11 +69,6 @@ namespace WebAddressbookTests
         public NavigationHelper Navigator
         {
             get { return navigationHelper; }
-        }
-
-        public LogoutHelper AuthOut
-        {
-            get { return logoutHelper; }
         }
 
         public GroupHelper Groups
