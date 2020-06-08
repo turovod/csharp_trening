@@ -40,7 +40,6 @@ namespace WebAddressbookTests
                 .FillContactForm(contactsData)
                 .SubmitContactCreatin();
             app.Navigator.GoToHomePage();
-            app.AuthOut.Logout();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            // Проверить наличие контакта с этим id
             app.Contacts.Remove();
         }
     }

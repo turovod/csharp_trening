@@ -11,19 +11,7 @@ namespace WebAddressbookTests
         [SetUp]
         public void SetupTest()
         {
-            ContactsData contactsData = new ContactsData("a", "admin", "secret");
-
-            app = new ApplicationManager();
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(contactsData);
-
-           
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Stop();
-        }      
+            app = ApplicationManager.GetInstance();          
+        }    
     }
 }

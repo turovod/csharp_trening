@@ -14,7 +14,6 @@ namespace WebAddressbookTests
             group.Footer = "ccc";
 
             app.Groups.Create(group);
-            app.AuthOut.Logout();
         }
 
         [Test]
@@ -25,7 +24,7 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             app.Groups.Create(group);
-            app.AuthOut.Logout();
+
         }
     }
 }

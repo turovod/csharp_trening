@@ -8,8 +8,6 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        private bool acceptNextAlert = true;
-
         public ContactHelper(ApplicationManager manager) : base(manager) { }
 
         public ContactHelper Remove()
@@ -22,9 +20,8 @@ namespace WebAddressbookTests
 
         public ContactHelper RemoveContact()
         {
-            acceptNextAlert = true;
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
 
@@ -34,6 +31,7 @@ namespace WebAddressbookTests
             InitContactModification();
             FillContactForm(contactsData);
             SubmitContactModification();
+            driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
 
@@ -94,30 +92,6 @@ namespace WebAddressbookTests
 
             return this;
         }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
-
-
     }
 
 
