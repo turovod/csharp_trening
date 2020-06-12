@@ -12,21 +12,82 @@ namespace WebAddressbookTests
 
         public ContactHelper Remove()
         {
+            if (!IsContactPresent())
+            {
+                InitNewContactCreation();
+                FillContactForm(new ContactsData("a", "admin", "secret")
+                {
+                    MiddleName = "a",
+                    LastName = "a",
+                    Nickname = "a",
+                    Company = "a",
+                    Title = "a",
+                    Address = "a",
+                    Home = "a",
+                    Mobile = "a",
+                    Work = "a",
+                    Fax = "a",
+                    Email = "a",
+                    Email2 = "a",
+                    Email3 = "a",
+                    Homepage = "a",
+                    BDay = "28",
+                    BMonth = "April",
+                    BYear = "2000",
+                    ADay = "12",
+                    AMonth = "January",
+                    AYear = "2000",
+                    SAddress = "a",
+                    SHome = "a",
+                    SNotes = "a"
+                });
+
+                SubmitContactCreatin();
+                manager.Navigator.GoToHomePage();
+            }
+
             SelectContact();
             RemoveContact();
 
             return this;
         }
 
-        public ContactHelper RemoveContact()
-        {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            driver.SwitchTo().Alert().Accept();
-            return this;
-        }
-
         internal ContactHelper Modify(ContactsData contactsData)
         {
+            if (!IsContactPresent())
+            {
+                InitNewContactCreation();
+                FillContactForm(new ContactsData("a", "admin", "secret")
+                {
+                    MiddleName = "a",
+                    LastName = "a",
+                    Nickname = "a",
+                    Company = "a",
+                    Title = "a",
+                    Address = "a",
+                    Home = "a",
+                    Mobile = "a",
+                    Work = "a",
+                    Fax = "a",
+                    Email = "a",
+                    Email2 = "a",
+                    Email3 = "a",
+                    Homepage = "a",
+                    BDay = "28",
+                    BMonth = "April",
+                    BYear = "2000",
+                    ADay = "12",
+                    AMonth = "January",
+                    AYear = "2000",
+                    SAddress = "a",
+                    SHome = "a",
+                    SNotes = "a"
+                });
+
+                SubmitContactCreatin();
+                manager.Navigator.GoToHomePage();
+            }
+
             SelectContact();
             InitContactModification();
             FillContactForm(contactsData);
@@ -80,6 +141,13 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper InitNewContactCreation()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+
+            return this;
+        }
+
         private ContactHelper InitContactModification()
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
@@ -92,6 +160,31 @@ namespace WebAddressbookTests
 
             return this;
         }
+
+        public ContactHelper SubmitContactCreatin()
+        {
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+
+            return this;
+        }
+
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+
+        public bool IsContactPresent()
+        {
+            if (driver.Url == manager.Navigator.baseURL + "/addressbook/")
+            {
+                manager.Navigator.GoToHomePage();
+            }
+            return IsElementPresent(By.Name("selected[]"));
+        }
+
     }
 
 

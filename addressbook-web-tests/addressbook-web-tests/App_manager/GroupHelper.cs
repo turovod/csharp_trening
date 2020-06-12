@@ -26,7 +26,10 @@ namespace WebAddressbookTests
 
         public GroupHelper Modify(int p, GroupData newData)
         {
-            manager.Navigator.GoToGroupsPage();
+            if (!IsGroupPresent())
+            {
+                Create(new GroupData("777") { Header = "777", Footer = "777" });
+            }
 
             SelectGroup(p);
             InitGroupModification();
@@ -39,7 +42,10 @@ namespace WebAddressbookTests
 
         public GroupHelper Remove(int v)
         {
-            manager.Navigator.GoToGroupsPage();
+            if (!IsGroupPresent())
+            {
+                Create(new GroupData("777") { Header = "777", Footer = "777" });
+            }
 
             SelectGroup(v);
             RemoveGroup();
@@ -165,6 +171,15 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("edit")).Click();
             return this;
+        }
+
+        public bool IsGroupPresent()
+        {
+            if (driver.Url != manager.Navigator.baseURL + "/addressbook/group.php")
+            {
+                manager.Navigator.GoToGroupsPage();
+            }
+            return IsElementPresent(By.Name("selected[]"));
         }
     }
 }
