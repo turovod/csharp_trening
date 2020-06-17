@@ -10,6 +10,11 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
+            if (!app.Groups.IsGroupPresent())
+            {
+                app.Groups.Create(new GroupData("777") { Header = "777", Footer = "777" });
+            }
+
             GroupData newData = new GroupData("zzz");
             newData.Header = null;
             newData.Footer = null;

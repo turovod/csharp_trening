@@ -26,11 +26,6 @@ namespace WebAddressbookTests
 
         public GroupHelper Modify(int p, GroupData newData)
         {
-            if (!IsGroupPresent())
-            {
-                Create(new GroupData("777") { Header = "777", Footer = "777" });
-            }
-
             SelectGroup(p);
             InitGroupModification();
             FillGroupForm(newData);
@@ -42,11 +37,6 @@ namespace WebAddressbookTests
 
         public GroupHelper Remove(int v)
         {
-            if (!IsGroupPresent())
-            {
-                Create(new GroupData("777") { Header = "777", Footer = "777" });
-            }
-
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
