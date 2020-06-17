@@ -1,7 +1,9 @@
 ﻿
+using System;
+
 namespace WebAddressbookTests
 {
-    public class ContactsData : AccountData
+    public class ContactsData : AccountData, IEquatable<ContactsData>, IComparable<ContactsData>
     {
         string firstName;
         string middleName;
@@ -33,6 +35,31 @@ namespace WebAddressbookTests
             : base(username, password)
         {
             this.firstName = firstName;
+        }
+
+
+        public int CompareTo(ContactsData other)
+        {
+            if (Object.ReferenceEquals(other, null)) return 1;
+
+            if (lastName.CompareTo(other.lastName) == 0)
+            {
+                return firstName.CompareTo(other.firstName);
+            }
+            return 1;
+        }
+
+        public bool Equals(ContactsData other)
+        {
+            if (Object.ReferenceEquals(other, null)) return false;
+            if (Object.ReferenceEquals(this, other)) return true;
+
+            if (lastName == other.lastName)
+            {
+                return firstName == other.firstName;
+            }
+
+            return false;
         }
 
         public string FirstName
@@ -184,6 +211,5 @@ namespace WebAddressbookTests
             get { return sNotes; }
             set { sNotes = value; }
         }
-
     }
 }

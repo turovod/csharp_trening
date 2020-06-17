@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
@@ -71,6 +72,22 @@ namespace WebAddressbookTests
             Type(By.Name("notes"), contactsData.SNotes);
 
             return this;
+        }
+
+        public List<ContactsData> GetContacList()
+        {
+            List<ContactsData> contacts = new List<ContactsData>();
+
+            manager.Navigator.GoToHomePage();
+
+            ICollection<IWebElement> elements = driver.FindElements(By.TagName("td"));
+
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactsData(element.Text,"admin", "secret"));
+            }
+
+            return contacts;
         }
 
         public ContactHelper InitNewContactCreation()
