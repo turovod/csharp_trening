@@ -80,11 +80,12 @@ namespace WebAddressbookTests
 
             manager.Navigator.GoToHomePage();
 
-            ICollection<IWebElement> elements = driver.FindElements(By.TagName("td"));
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
 
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactsData(element.Text,"admin", "secret"));
+                contacts.Add(new ContactsData(element.Text, "admin", "secret") { LastName = "a"});
+                Console.WriteLine(element.Text); // убрать
             }
 
             return contacts;
