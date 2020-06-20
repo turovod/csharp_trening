@@ -42,13 +42,11 @@ namespace WebAddressbookTests
         {
             if (Object.ReferenceEquals(other, null)) return 1;
 
-            //if (lastName.CompareTo(other.lastName) == 0)
-            //{
-            //    return firstName.CompareTo(other.firstName);
-            //}
-            //return lastName.CompareTo(other.lastName);
-
-            return firstName.CompareTo(other.firstName);
+            if (lastName.CompareTo(other.lastName) == 0)
+            {
+                return firstName.CompareTo(other.firstName);
+            }
+            return lastName.CompareTo(other.lastName);
         }
 
         public bool Equals(ContactsData other)
@@ -56,14 +54,12 @@ namespace WebAddressbookTests
             if (Object.ReferenceEquals(other, null)) return false;
             if (Object.ReferenceEquals(this, other)) return true;
 
-            //if (lastName == other.lastName)
-            //{
-            //    return firstName == other.firstName;
-            //}
+            if (lastName == other.lastName)
+            {
+                return firstName == other.firstName;
+            }
 
-            //return false;
-
-            return firstName == other.firstName;
+            return false;
         }
 
         public string FirstName

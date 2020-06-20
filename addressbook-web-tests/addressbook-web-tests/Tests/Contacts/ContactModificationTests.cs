@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -70,7 +70,16 @@ namespace WebAddressbookTests
             contactsData.SHome = "z";
             contactsData.SNotes = "z";
 
+            List<ContactsData> oldContacts = app.Contacts.GetContacList();
+
             app.Contacts.Modify(contactsData);
+
+            List<ContactsData> newContacts = app.Contacts.GetContacList();
+
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreNotEqual(oldContacts, newContacts);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -40,11 +40,26 @@ namespace WebAddressbookTests
                     SNotes = "a"
                 });
 
+
+
                 app.Contacts.SubmitContactCreatin();
                 app.Navigator.GoToHomePage();
+
+
             }
 
+            List<ContactsData> oldContacts = app.Contacts.GetContacList();
+
             app.Contacts.Remove();
+
+            List<ContactsData> newContacts = app.Contacts.GetContacList();
+
+            oldContacts.RemoveAt(0);
+
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
