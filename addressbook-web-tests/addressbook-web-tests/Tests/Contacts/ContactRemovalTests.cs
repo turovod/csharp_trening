@@ -59,20 +59,6 @@ namespace WebAddressbookTests
             oldContacts.Sort();
             newContacts.Sort();
 
-
-            foreach (var item in oldContacts)
-            {
-                System.Console.Write(item.FirstName + " ");
-            }
-
-            System.Console.WriteLine();
-
-            foreach (var item in newContacts)
-            {
-                System.Console.Write(item.FirstName + " ");
-            }
-
-
             Assert.AreEqual(oldContacts, newContacts);
         }
     }

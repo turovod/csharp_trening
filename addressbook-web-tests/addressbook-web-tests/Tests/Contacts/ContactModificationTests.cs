@@ -46,8 +46,8 @@ namespace WebAddressbookTests
 
             ContactsData contactsData = new ContactsData("z", "admin", "secret");
 
-            contactsData.MiddleName = "z";
-            contactsData.LastName = "z";
+            contactsData.MiddleName = "zMN";
+            contactsData.LastName = "zLM";
             contactsData.Nickname = "z";
             contactsData.Company = "z";
             contactsData.Title = "z";

@@ -9,10 +9,10 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactsData contactsData = new ContactsData("a", "admin", "secret");
+            ContactsData contactsData = new ContactsData("MN", "admin", "secret");
 
             contactsData.MiddleName = "a";
-            contactsData.LastName = "a";
+            contactsData.LastName = "LN";
             contactsData.Nickname = "a";
             contactsData.Company = "a";
             contactsData.Title = "a";
@@ -49,6 +49,20 @@ namespace WebAddressbookTests
 
             oldContacts.Sort();
             newContacts.Sort();
+// ----------------------------------------------------------------------------- Проверка вывода имени и фамилии
+            foreach (var item in oldContacts)
+            {
+                System.Console.Write(item.FirstName + " " + item.LastName);
+            }
+
+            System.Console.WriteLine();
+
+            foreach (var item in newContacts)
+            {
+                System.Console.Write(item.FirstName + " " + item.LastName);
+            }
+// -----------------------------------------------------------------------------
+
 
             Assert.AreEqual(oldContacts, newContacts);
             

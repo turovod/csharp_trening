@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -86,11 +87,31 @@ namespace WebAddressbookTests
                 manager.Navigator.GoToHomePage();
 
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
+                ICollection<IWebElement> elementsL = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[2]"));
+
+                string[] lastName = new string[elementsL.Count];
+                int i = 0;
+
+                foreach (IWebElement element in elementsL)
+                {
+                    lastName[i] = element.Text;
+                    i++;
+                }
+
+                i = 0;
 
                 foreach (IWebElement element in elements)
                 {
-                    contactCash.Add(new ContactsData(element.Text, "admin", "secret") { LastName = "a" });
+                    contactCash.Add(new ContactsData(element.Text, "admin", "secret") { LastName = lastName[i] });
+                    i++;
                 }
+
+                //ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
+
+                //foreach (IWebElement element in elements)
+                //{
+                //    contactCash.Add(new ContactsData(element.Text, "admin", "secret") { LastName = "LN" });
+                //}
             }
 
             return new List<ContactsData>(contactCash);
