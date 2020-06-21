@@ -33,6 +33,8 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("update")).Click();
 
+            contactCash = null;
+
             return this;
         }
 
@@ -74,20 +76,24 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private List<ContactsData> contactCash = null;
+
         public List<ContactsData> GetContacList()
         {
-            List<ContactsData> contacts = new List<ContactsData>();
-
-            manager.Navigator.GoToHomePage();
-
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
-
-            foreach (IWebElement element in elements)
+            if (contactCash == null)
             {
-                contacts.Add(new ContactsData(element.Text, "admin", "secret") { LastName = "a"});
+                contactCash = new List<ContactsData>();
+                manager.Navigator.GoToHomePage();
+
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
+
+                foreach (IWebElement element in elements)
+                {
+                    contactCash.Add(new ContactsData(element.Text, "admin", "secret") { LastName = "a" });
+                }
             }
 
-            return contacts;
+            return new List<ContactsData>(contactCash);
         }
 
         public ContactHelper InitNewContactCreation()
@@ -114,6 +120,8 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
 
+            contactCash = null;
+
             return this;
         }
 
@@ -121,6 +129,7 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept();
+            contactCash = null;
             return this;
         }
 

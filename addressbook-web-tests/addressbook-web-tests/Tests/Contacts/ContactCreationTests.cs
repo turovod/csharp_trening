@@ -45,7 +45,7 @@ namespace WebAddressbookTests
 
             List<ContactsData> newContacts = app.Contacts.GetContacList();
 
-            oldContacts.Add(contactsData);
+            //oldContacts.Add(contactsData);
 
             oldContacts.Sort();
             newContacts.Sort();
