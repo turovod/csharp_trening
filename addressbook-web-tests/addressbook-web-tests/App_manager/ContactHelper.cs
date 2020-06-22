@@ -86,32 +86,19 @@ namespace WebAddressbookTests
                 contactCash = new List<ContactsData>();
                 manager.Navigator.GoToHomePage();
 
-                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
-                ICollection<IWebElement> elementsL = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[2]"));
+                List<string> line = new List<string>();
 
-                string[] lastName = new string[elementsL.Count];
-                int i = 0;
-
-                foreach (IWebElement element in elementsL)
-                {
-                    lastName[i] = element.Text;
-                    i++;
-                }
-
-                i = 0;
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr"));
 
                 foreach (IWebElement element in elements)
                 {
-                    contactCash.Add(new ContactsData(element.Text, "admin", "secret") { LastName = lastName[i] });
-                    i++;
+
+                    contactCash.Add(new ContactsData(element.FindElement(By.XPath("//td[3]")).Text, "admin", "secret") 
+                    { 
+                        LastName = element.FindElement(By.XPath("//td[2]")).Text 
+                    });
+
                 }
-
-                //ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
-
-                //foreach (IWebElement element in elements)
-                //{
-                //    contactCash.Add(new ContactsData(element.Text, "admin", "secret") { LastName = "LN" });
-                //}
             }
 
             return new List<ContactsData>(contactCash);
