@@ -71,6 +71,7 @@
     <Compile Include="App_manager\HelperBase.cs" />
     <Compile Include="App_manager\LoginHelper.cs" />
     <Compile Include="App_manager\NavigationHelper.cs" />
+    <Compile Include="Tests\Contacts\ContactInformationTest.cs" />
     <Compile Include="Tests\Contacts\ContactModificationTests.cs" />
     <Compile Include="Tests\Contacts\ContactRemovalTests.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />

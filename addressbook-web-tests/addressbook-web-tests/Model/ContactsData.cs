@@ -5,36 +5,112 @@ namespace WebAddressbookTests
 {
     public class ContactsData : AccountData, IEquatable<ContactsData>, IComparable<ContactsData>
     {
-        string firstName;
-        string middleName;
-        string lastName;
-        string nickname;
-        string delete;
-        string company;
-        string title;
-        string address;
-        string home;
-        string mobile;
-        string work;
-        string fax;
-        string email;
-        string email2;
-        string email3;
-        string homepage;
-        string bDay;
-        string bMonth;
-        string bYear;
-        string aDay;
-        string aMonth;
-        string aYear;
-        string sAddress;
-        string sHome;
-        string sNotes;
+        private string allPhones;
+        private string allEmails;
+
+        public string FirstName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Nickname { get; set; }
+
+        public string Delete { get; set; }
+
+        public string Company { get; set; }
+
+        public string Title { get; set; }
+
+        public string Address { get; set; }
+
+        public string Home { get; set; }
+
+        public string AllPhones 
+        {
+            get 
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(Home) + CleanUp(Mobile) + CleanUp(Work) + CleanUp(Fax)).Trim();
+                }
+                
+            }
+            set 
+            {
+                allPhones = value;
+            } 
+        }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
+
+        public string Mobile { get; set; }
+
+        public string Work { get; set; }
+
+        public string Fax { get; set; }
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    return Email + "\r\n" + Email2 + "\r\n" + Email3;
+                }
+
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
+
+        public string Email { get; set; }
+
+        public string Email2 { get; set; }
+
+        public string Email3 { get; set; }
+
+        public string Homepage { get; set; }
+
+        public string BDay { get; set; }
+
+        public string BMonth { get; set; }
+
+        public string BYear { get; set; }
+
+        public string ADay { get; set; }
+
+        public string AMonth {get; set; }
+
+        public string AYear { get; set; }
+
+        public string SAddress { get; set; }
+
+        public string SHome { get; set; }
+
+        public string SNotes { get; set; }
 
         public ContactsData(string firstName, string username, string password)
             : base(username, password)
         {
-            this.firstName = firstName;
+            FirstName = firstName;
         }
 
 
@@ -42,11 +118,11 @@ namespace WebAddressbookTests
         {
             if (Object.ReferenceEquals(other, null)) return 1;
 
-            if (lastName.CompareTo(other.lastName) == 0)
+            if (LastName.CompareTo(other.LastName) == 0)
             {
-                return firstName.CompareTo(other.firstName);
+                return FirstName.CompareTo(other.FirstName);
             }
-            return lastName.CompareTo(other.lastName);
+            return LastName.CompareTo(other.LastName);
         }
 
         public bool Equals(ContactsData other)
@@ -54,162 +130,14 @@ namespace WebAddressbookTests
             if (Object.ReferenceEquals(other, null)) return false;
             if (Object.ReferenceEquals(this, other)) return true;
 
-            if (lastName == other.lastName)
+            if (LastName == other.LastName)
             {
-                return firstName == other.firstName;
+                return FirstName == other.FirstName;
             }
 
             return false;
         }
 
-        public string FirstName
-        {
-            get { return firstName; }
-            set { firstName = value; }
-        }
 
-        public string MiddleName
-        {
-            get { return middleName; }
-            set { middleName = value; }
-        }
-
-        public string LastName
-        {
-            get { return lastName; }
-            set { lastName = value; }
-        }
-
-        public string Nickname
-        {
-            get { return nickname; }
-            set { nickname = value; }
-        }
-
-        public string Delete
-        {
-            get { return delete; }
-            set { delete = value; }
-        }
-
-        public string Company
-        {
-            get { return company; }
-            set { company = value; }
-        }
-
-        public string Title
-        {
-            get { return title; }
-            set { title = value; }
-        }
-
-        public string Address
-        {
-            get { return address; }
-            set { address = value; }
-        }
-
-        public string Home
-        {
-            get { return home; }
-            set { home = value; }
-        }
-
-        public string Mobile
-        {
-            get { return mobile; }
-            set { mobile = value; }
-        }
-
-        public string Work
-        {
-            get { return work; }
-            set { work = value; }
-        }
-
-        public string Fax
-        {
-            get { return fax; }
-            set { fax = value; }
-        }
-
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-
-        public string Email2
-        {
-            get { return email2; }
-            set { email2 = value; }
-        }
-
-        public string Email3
-        {
-            get { return email3; }
-            set { email3 = value; }
-        }
-
-        public string Homepage
-        {
-            get { return homepage; }
-            set { homepage = value; }
-        }
-
-        public string BDay
-        {
-            get { return bDay; }
-            set { bDay = value; }
-        }
-
-        public string BMonth
-        {
-            get { return bMonth; }
-            set { bMonth = value; }
-        }
-
-        public string BYear
-        {
-            get { return bYear; }
-            set { bYear = value; }
-        }
-
-        public string ADay
-        {
-            get { return aDay; }
-            set { aDay = value; }
-        }
-
-        public string AMonth
-        {
-            get { return aMonth; }
-            set { aMonth = value; }
-        }
-
-        public string AYear
-        {
-            get { return aYear; }
-            set { aYear = value; }
-        }
-
-        public string SAddress
-        {
-            get { return sAddress; }
-            set { sAddress = value; }
-        }
-
-        public string SHome
-        {
-            get { return sHome; }
-            set { sHome = value; }
-        }
-
-        public string SNotes
-        {
-            get { return sNotes; }
-            set { sNotes = value; }
-        }
     }
 }

@@ -12,6 +12,63 @@ namespace WebAddressbookTests
     {
         public ContactHelper(ApplicationManager manager) : base(manager) { }
 
+        public ContactsData GetContacInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
+
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allEmails = cells[4].Text;
+            string allPhones = cells[5].Text;
+
+            return new ContactsData(firstName, "admin", "secret")
+            {
+                LastName = lastName,
+                Address = address,
+                AllEmails = allEmails,
+                AllPhones = allPhones
+            };
+
+        }
+
+        public ContactsData GetContacInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModificationByIndex(0);
+
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value"); 
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value"); 
+            string homePone = driver.FindElement(By.Name("home")).GetAttribute("value"); 
+            string mobilePone = driver.FindElement(By.Name("mobile")).GetAttribute("value"); 
+            string workPone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
+            
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value"); 
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value"); 
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            return new ContactsData(firstName, "admin", "secret")
+            {
+                LastName = lastName,
+                Address = address,
+                Home = homePone,
+                Mobile = mobilePone,
+                Work = workPone,
+                Fax = fax,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+            };
+        }
+
+        private void InitContactModificationByIndex(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"))[7].FindElement(By.TagName("a")).Click();
+        }
+
         public ContactHelper Remove()
         {
             SelectContact();
@@ -86,17 +143,19 @@ namespace WebAddressbookTests
                 contactCash = new List<ContactsData>();
                 manager.Navigator.GoToHomePage();
 
-                List<string> line = new List<string>();
+                ICollection<IWebElement> elementsFirstName = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[3]"));
+                IList<IWebElement> elementsLastName = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr/td[2]"));
 
-                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']/tbody/tr"));
+                int i = 0;
 
-                foreach (IWebElement element in elements)
+                foreach (IWebElement element in elementsFirstName)
                 {
-
-                    contactCash.Add(new ContactsData(element.FindElement(By.XPath("//td[3]")).Text, "admin", "secret") 
-                    { 
-                        LastName = element.FindElement(By.XPath("//td[2]")).Text 
+                    contactCash.Add(new ContactsData(element.Text, "admin", "secret")
+                    {
+                        LastName = elementsLastName[i].Text
                     });
+
+                    i++;
 
                 }
             }
