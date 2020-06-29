@@ -18,11 +18,12 @@ namespace WebAddressbookTests
             ContactsData fromForm = app.Contacts.GetContacInformationFromEditForm(0);
 
             Console.WriteLine(fromTable.AllEmails);
-            Console.WriteLine(fromForm.AllPhones);
+            Console.WriteLine();
+            Console.WriteLine(fromForm.AllEmails);
 
             Assert.AreEqual(fromTable, fromForm);
             Assert.AreEqual(fromTable.Address, fromForm.Address);
-            //Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);
+            Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);
             Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
 
         }

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -52,7 +53,7 @@ namespace WebAddressbookTests
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
 
         public string Mobile { get; set; }
@@ -71,7 +72,23 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return Email + "\r\n" + Email2 + "\r\n" + Email3;
+                    string _allEmails = null;
+                    if (Email.Length > 0)
+                    {
+                        _allEmails = Email + "\r\n";
+                    }
+
+                    if (Email2.Length > 0)
+                    {
+                        _allEmails += Email2 + "\r\n";
+                    }
+                    
+                    if (Email3.Length > 0)
+                    {
+                        _allEmails += Email3;
+                    }
+
+                    return _allEmails;
                 }
 
             }
