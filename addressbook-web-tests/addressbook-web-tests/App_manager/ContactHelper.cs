@@ -33,6 +33,20 @@ namespace WebAddressbookTests
 
         }
 
+        public ContactsData GetContacInformationFromPropertiesForm()
+        {
+            manager.Navigator.GoToHomePage();
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
+            string Text = driver.FindElement(By.XPath("//div[@id='content']/b")).Text;
+
+            string[] fullName = Text.Split(' ');
+
+            return new ContactsData(fullName[0], "admin", "secret")
+            {
+                LastName = fullName[2],
+            };
+        }
+
         public ContactsData GetContacInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
@@ -208,6 +222,17 @@ namespace WebAddressbookTests
                 manager.Navigator.GoToHomePage();
             }
             return IsElementPresent(By.Name("selected[]"));
+        }
+
+        public int GetNumbersOfSerchResalts()
+        {
+            manager.Navigator.GoToHomePage();
+
+            string text = driver.FindElement(By.TagName("label")).Text;
+
+            Match m = new Regex(@"\d+").Match(text);
+
+            return Convert.ToInt32(m.Value);
         }
 
     }
