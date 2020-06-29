@@ -33,7 +33,7 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "name =" + Name;
+            return "name =" + Name + "\nheler = " + Header + "\nfooter = " + Footer;
         }
 
         public string Name { get; set; }
