@@ -17,11 +17,16 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
             IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
 
+            
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
             string allEmails = cells[4].Text;
             string allPhones = cells[5].Text;
+
+
+
+
 
             return new ContactsData(firstName, "admin", "secret")
             {
@@ -37,13 +42,15 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
-            string Text = driver.FindElement(By.XPath("//div[@id='content']/b")).Text;
+            //string Text = driver.FindElement(By.XPath("//div[@id='content']/b")).Text;
 
-            string[] fullName = Text.Split(' ');
+            //string allInfo = driver.FindElement(By.TagName("body")).FindElement(By.TagName("br")).Text;
+            string allInfo = driver.FindElement(By.Id("content")).Text;
 
-            return new ContactsData(fullName[0], "admin", "secret")
+            return new ContactsData("aa", "admin", "secret")
             {
-                LastName = fullName[2],
+                LastName = "bb",
+                AllInfo = allInfo
             };
         }
 
@@ -53,16 +60,38 @@ namespace WebAddressbookTests
             InitContactModificationByIndex(0);
 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
-            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value"); 
-            string address = driver.FindElement(By.Name("address")).GetAttribute("value"); 
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
+            string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("value");
+            string company = driver.FindElement(By.Name("company")).GetAttribute("value");
+            string title = driver.FindElement(By.Name("title")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
             string homePone = driver.FindElement(By.Name("home")).GetAttribute("value"); 
             string mobilePone = driver.FindElement(By.Name("mobile")).GetAttribute("value"); 
             string workPone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
-            
+            string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");          
             string email = driver.FindElement(By.Name("email")).GetAttribute("value"); 
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value"); 
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            string homepage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
+            string bDay = driver.FindElement(By.Name("bday")).GetAttribute("value");
+            string bMonth = driver.FindElement(By.Name("bmonth")).GetAttribute("value");
+            string bYear = driver.FindElement(By.Name("byear")).GetAttribute("value");
+            string aDay = driver.FindElement(By.Name("aday")).GetAttribute("value");
+            string aMonth = driver.FindElement(By.Name("amonth")).GetAttribute("value");
+            string aYear = driver.FindElement(By.Name("ayear")).GetAttribute("value");
+            string sAddress = driver.FindElement(By.Name("address2")).GetAttribute("value");
+            string sHome = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+            string sNotes = driver.FindElement(By.Name("notes")).GetAttribute("value");
+
+            string allInfo = firstName + " " + middleName + " " + lastName + "\r\n" +
+                nickName + "\r\n" + company + "\r\n" + title + "\r\n" + address + "\r\n\r\n" +
+                "H: " + homePone + "\r\nM: " + mobilePone + "\r\nW: " + workPone + "\r\nF: " + fax +
+                "\r\n\r\n" + email + email2 + "\r\n" + email3 + "\r\nHomepage:\r\n" + homepage + "\r\n\r\n" +
+                "Birthday " + bDay + ". " + bMonth + " " + bYear + " (20)\r\n" + "Anniversary " +
+                aDay + ". " + aMonth + " " + aYear + " (20)\r\n\r\n" + sAddress + "\r\n\r\n" +
+                "P: " + sHome + "\r\n\r\n" + sNotes;
 
             return new ContactsData(firstName, "admin", "secret")
             {
@@ -74,7 +103,8 @@ namespace WebAddressbookTests
                 Fax = fax,
                 Email = email,
                 Email2 = email2,
-                Email3 = email3
+                Email3 = email3,
+                AllInfo = allInfo
             };
         }
 

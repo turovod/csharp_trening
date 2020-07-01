@@ -124,6 +124,8 @@ namespace WebAddressbookTests
 
         public string SNotes { get; set; }
 
+        public string AllInfo { get; set; }
+
         public ContactsData(string firstName, string username, string password)
             : base(username, password)
         {
