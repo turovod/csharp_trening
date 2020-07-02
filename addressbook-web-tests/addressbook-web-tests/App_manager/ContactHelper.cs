@@ -85,13 +85,50 @@ namespace WebAddressbookTests
             string sHome = driver.FindElement(By.Name("phone2")).GetAttribute("value");
             string sNotes = driver.FindElement(By.Name("notes")).GetAttribute("value");
 
-            string allInfo = firstName + " " + middleName + " " + lastName + "\r\n" +
-                nickName + "\r\n" + company + "\r\n" + title + "\r\n" + address + "\r\n\r\n" +
-                "H: " + homePone + "\r\nM: " + mobilePone + "\r\nW: " + workPone + "\r\nF: " + fax +
-                "\r\n\r\n" + email + email2 + "\r\n" + email3 + "\r\nHomepage:\r\n" + homepage + "\r\n\r\n" +
-                "Birthday " + bDay + ". " + bMonth + " " + bYear + " (20)\r\n" + "Anniversary " +
-                aDay + ". " + aMonth + " " + aYear + " (20)\r\n\r\n" + sAddress + "\r\n\r\n" +
-                "P: " + sHome + "\r\n\r\n" + sNotes;
+            //string allInfo1 = firstName + " " + middleName + " " + lastName + "\r\n" +
+            //    nickName + "\r\n" + company + "\r\n" + title + "\r\n" + address + "\r\n\r\n" +
+            //    "H: " + homePone + "\r\nM: " + mobilePone + "\r\nW: " + workPone + "\r\nF: " + fax +
+            //    "\r\n\r\n" + email + email2 + "\r\n" + email3 + "\r\nHomepage:\r\n" + homepage + "\r\n\r\n" +
+            //    "Birthday " + bDay + ". " + bMonth + " " + bYear + " (20)\r\n" + "Anniversary " +
+            //    aDay + ". " + aMonth + " " + aYear + " (20)\r\n\r\n" + sAddress + "\r\n\r\n" +
+            //    "P: " + sHome + "\r\n\r\n" + sNotes;
+
+            string allInfo = null;
+
+            if (firstName != "") allInfo += firstName;
+            if (middleName != "") allInfo += " " + middleName;
+            if (lastName != "") allInfo += " " + lastName;
+            if (nickName != "") allInfo += "\r\n" + nickName;
+            if (company != "") allInfo += "\r\n" + company;
+            if (title != "") allInfo += "\r\n" + title;
+            if (address != "") allInfo += "\r\n" + address;
+            allInfo += "\r\n\r\n";
+            if (homePone != "") allInfo += "H: " + homePone;
+            if (mobilePone != "") allInfo += "\r\nM: " + mobilePone;
+            if (workPone != "") allInfo += "\r\nW: " + workPone;
+            if (fax != "") allInfo += "\r\nF: " + fax;
+            allInfo += "\r\n\r\n";
+            if (email != "") allInfo += email;
+            if (email2 != "") allInfo += email2;
+            if (email3 != "") allInfo += "\r\n" + email3;
+            allInfo += "\r\nHomepage:\r\n";
+            if (homepage != "") allInfo += homepage;
+            allInfo += "\r\n\r\n" + "Birthday ";
+            if (bDay != "") allInfo += bDay;
+            allInfo += ". ";
+            if (bMonth != "") allInfo += bMonth;
+            if (bYear != "") allInfo += " " + bYear;
+            allInfo += " (20)\r\n" + "Anniversary ";
+            if (aDay != "") allInfo += aDay;
+            allInfo += ". ";
+            if (aMonth != "") allInfo += aMonth;
+            if (aYear != "") allInfo += " " + aYear;
+            allInfo += " (20)\r\n\r\n";
+            if (sAddress != "") allInfo += sAddress;
+            allInfo += "\r\n\r\n" + "P: ";
+            if (sHome != "") allInfo += sHome;
+            allInfo += "\r\n\r\n";
+            if (sNotes != "") allInfo += sNotes;
 
             return new ContactsData(firstName, "admin", "secret")
             {
