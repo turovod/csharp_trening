@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfGroupData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GroupData>
+    <Name>egeb</Name>
+    <Header>ftof</Header>
+    <Footer>ho</Footer>
+  </GroupData>
+  <GroupData>
+    <Name>mnqmsrn</Name>
+    <Header>wia</Header>
+    <Footer>cjdjjajhn</Footer>
+  </GroupData>
+  <GroupData>
+    <Name>gc</Name>
+    <Header>l</Header>
+    <Footer />
+  </GroupData>
+</ArrayOfGroupData>
