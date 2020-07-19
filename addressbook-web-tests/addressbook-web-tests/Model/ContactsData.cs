@@ -6,6 +6,8 @@ namespace WebAddressbookTests
 {
     public class ContactsData : AccountData, IEquatable<ContactsData>, IComparable<ContactsData>
     {
+        public ContactsData() { }
+
         private string allPhones;
         private string allEmails;
 

@@ -6,6 +6,8 @@ namespace WebAddressbookTests
         private string username;
         private string password;
 
+        public AccountData() { }
+
         public AccountData(string username, string password)
         {
             this.username = username;
