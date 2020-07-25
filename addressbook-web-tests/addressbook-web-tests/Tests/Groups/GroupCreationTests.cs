@@ -3,6 +3,7 @@ using Json.Net;
 using Microsoft.Office.Interop.Excel;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -112,6 +113,32 @@ namespace WebAddressbookTests
             newGroups.Sort();
 
             Assert.AreEqual(oldGroups, newGroups);
+        }
+        
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+
+            List<GroupData> fromUI = app.Groups.GetGroupList();
+
+            DateTime end = DateTime.Now;
+
+            Console.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+
+            AdressBookDB dB = new AdressBookDB();
+
+            List<GroupData> fromDB = (from g in dB.Grouos select g).ToList();
+
+            dB.Close();
+
+            end = DateTime.Now;
+
+            Console.WriteLine(end.Subtract(start));
+
+
         }
 
     }
